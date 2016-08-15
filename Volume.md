@@ -13,6 +13,5 @@ Kubernetes中的Volume是基于Docker进行扩展。
 客户端配置/etc/fstab，设置需要mount的目录
 客户端也可以手动mount -t nfs 1.1.1.1:/remote /local过来
 
-
 ```
 
