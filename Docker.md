@@ -13,7 +13,7 @@ sudo docker run -i -t --name mytest ubuntu:latest /bin/bash
  -
 ### docker镜像关键概念
 ```
-registry:保存docker镜像
+registry:保存docker镜像，分公共和私有两种。
 repository:具有某个功能的Docker镜像的所有迭代版本构成的镜像库，registry由一系列经过命名的repository组成。
 registry是repository的集合，repository是镜像集合
 ```
