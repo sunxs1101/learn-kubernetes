@@ -3,12 +3,14 @@
 #### NFS mount
 
 ```
+服务器设置共享目录，本地建立要挂载位置的目录。将服务器目录mount到客户端，使得在客户端使用
+
 客户端和服务器端都需要启动portmap和nfs的service
 服务器端编辑/etc/exports，添加需要共享的文件系统，然后service nfs restart
-
-客户端配置/etc/fstab，设置需要mount的目录
+客户端配置/etc/fstab，设置需要mount的目录，这样每次重启后就会自动挂载服务器的NFS共享目录。
 客户端也可以手动mount -t nfs 1.1.1.1:/remote /local过来
 
+NFS是一个文件系统，本身没有提供信息传输的协议和功能，它利用RPC(Remote Procedure Call)实现信息的传输。
 ```
 
 ### Docker volume
