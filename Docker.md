@@ -131,6 +131,8 @@ spec:
     fsType: "ext4"
 {% endif %}
 ```
+pillar.get是salt
+
 如果想使用NFS，只需将gcePersistentDisk改成nfs。任何情况下，存储(此例中是GCE)必须单独创建，这不是k8s替你管理的。
 
 
