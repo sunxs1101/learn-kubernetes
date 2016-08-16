@@ -36,14 +36,10 @@ sudo docker build -t="jamtur01/static_web:v1" \git@github.com:jamtur01/docker-st
 sudo docker run -d -p 80 --name static_web jamtur01/static_web \ nginx -g "daemon off;"
 -d:在后台跑
 --name:容器名为static_web
--p:控制Docker在运行时应该公开哪些网络端口给外部(宿主机)，使用"docker ps "命令查看容器的端口分配情况，运行一个容器时，Docker通过两种方法来在宿主机上分配端口。
+-p:控制Docker在运行时应该公开哪些网络端口给外部(宿主机)，运行一个容器时，Docker通过两种方法来在宿主机上分配端口。
  - Docker可以在宿主机上随机选择一个位于49000～49900的一个比较大的端口来映射到容器中的80端口上。
  - 可以在Docker宿主机中制定一个具体的端口号来映射到容器中的80端口上。
-
-
-
-
-
+使用"docker ps "命令查看容器的端口分配情况，"docker port CONTAINERID port"查看端口映射情况。
 ```
 ### Dockerfile指令
 
