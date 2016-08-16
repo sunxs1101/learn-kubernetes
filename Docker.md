@@ -13,8 +13,8 @@ sudo docker run -i -t --name mytest ubuntu:latest /bin/bash
  -
 ### docker镜像关键概念
 ```
-registry:保存docker镜像，分公共和私有两种。默认的registry是Docker hub，Docker hub中有两种类型的仓库：用户仓库(user registry)
-和顶层仓库(top-level repository)。用户仓库的镜像都是由Docker用户创建的，其命名由用户名和仓库名两部分组成，如jamtur01/puppet。与之相对，顶层仓库只包含仓库名部分，如ubuntu仓库。
+registry:保存docker镜像，分公共和私有两种。默认的registry是Docker hub，Docker hub中有两种类型的仓库：
+用户仓库(user registry)和顶层仓库(top-level repository)。用户仓库的镜像都是由Docker用户创建的，其命名由用户名和仓库名两部分组成，如jamtur01/puppet。与之相对，顶层仓库只包含仓库名部分，如ubuntu仓库。
 
 
 repository:具有某个功能的Docker镜像的所有迭代版本构成的镜像库，registry由一系列经过命名的repository组成。
