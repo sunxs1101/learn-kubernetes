@@ -46,7 +46,7 @@ kubernetes volume和pod一样有生命周期，因此，一个volume会比运行
 
 一个persistentVolumeClaim volume被用于挂载一个PersistentVolume到pod上，对用户而言，PersistentVolumes可以用来声明持久存储(比如GCE PersistentDisk或iSCSI volume)而不需要知道特定云环境的细节。下面具体介绍Persistent Volumes and Claims
 
-PersistentVolume子系统为用户和管理员提供了一个API，它从存储如何使用摘录出存储如何提供的细节，我们介绍两个新的API资源：PersistentVolume和PersistentVolumeClaim。
+PersistentVolume子系统为用户和管理员提供了一个API，它从存储如何使用中摘录出存储如何提供的细节，我们介绍两个新的API资源：PersistentVolume和PersistentVolumeClaim。
 
 PersistentVolume(PV)是集群中的一块网路存储，由管理员提供。PVs像Volumes一样，是volume plugins, 但是它有一个独立于任一单个使用PV的pod的声明周期，这个API对象抓住存储细节。
 
