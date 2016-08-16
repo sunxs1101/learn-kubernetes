@@ -43,7 +43,15 @@ kubernetes volume和pod一样有生命周期，因此，一个volume会比运行
  - gitRepo
  - secret
  - persistentVolumeClaim
-
+```
+yaml文件中有containers和volumes设置，例如
+desiredState:
+    manifest:
+        containers:
+            = mountPath这个volume在容器内的挂载点路径。
+        volumes:
+一个名为myshare的volume挂载到容器testpd文件系统mountPath路径，该volume来自一个IP为172.17.0.2的NFS服务器，该NFS服务器对外暴露/tmp作为共享目录。
+```
 一个persistentVolumeClaim volume被用于挂载一个PersistentVolume到pod上，对用户而言，PersistentVolumes可以用来声明持久存储(比如GCE PersistentDisk或iSCSI volume)而不需要知道特定云环境的细节。下面具体介绍Persistent Volumes and Claims
 
 PersistentVolume子系统为用户和管理员提供了一个API，它从存储如何使用中摘录出存储如何提供的细节，我们介绍两个新的API资源：PersistentVolume和PersistentVolumeClaim。
