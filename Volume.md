@@ -15,18 +15,17 @@ NFS是一个文件系统，本身没有提供信息传输的协议和功能，�
 
 ### Docker volume
 
+
 ### Kubernetes persist
 
-Docker中的数据是临时的，当容器销毁时，其中的数据会丢失。如果需要持久化容器，需要使用Docker
-Volume挂载宿主机上的文件目录到容器中。
-Kubernetes中的Volume是基于Docker进行扩展。
+Docker中的数据是临时的，容器的文件系统与容器的生命周期一致，当容器退出后其文件系统也随之被销毁，因此需要额外的持久化存储介质。如果需要持久化容器，需要使用Docker Volume挂载宿主机上的文件目录到容器中。
 
 http://www.open-open.com/lib/view/open1438593641817.html 笔记如下
 ```
 nfs：Kubernetes中通过简单的配置就可以挂载NFS到Pod中，而NFS中的数据时刻要永久保存的，同时NFS支持同时写操作。
 ```
 #### Kuberneters: Persistent Volumes and Claims
-学习[Persistent Volumes and Claims](https://github.com/kubernetes/kubernetes/blob/release-1.0/docs/user-guide/persistent-volumes.md)之前，首先我们要了解kubernetes中[volumes](https://github.com/kubernetes/kubernetes/blob/release-1.0/docs/user-guide/volumes.md)的概念。
+Kubernetes中的Volume是基于Docker进行扩展，学习[Persistent Volumes and Claims](https://github.com/kubernetes/kubernetes/blob/release-1.0/docs/user-guide/persistent-volumes.md)之前，首先我们要了解kubernetes中[volumes](https://github.com/kubernetes/kubernetes/blob/release-1.0/docs/user-guide/volumes.md)的概念。
 
 容器中的磁盘文件是短暂存储的，当一个容器挂掉，文件会丢失;当在pod中运行容器，有必要再容器间共享数据;k8s的Volume抽象解决这两个问题。Docker也有[volumes](https://docs.docker.com/engine/tutorials/dockervolumes/)，在Docker中，一个volume只是磁盘或另一个容器中的目录，其生命周期不被管理，直到最近也只有local-disk-backed volumes，现在Docker提供volumes驱动，但是功能也很有限。
 
