@@ -54,6 +54,7 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web \ nginx -g "daemo
 
 ## 运行自己的Docker Registry
 
+流程：利用dockerfile创建镜像->启动registry，搭建localhost registry->利用证书，搭建domain registry
 有时我们希望构建和存储包含不想被公开的信息或数据的镜像，有两个选择
  - 利用Docker Hub上的私有仓库
  - 在防火墙后面运行你自己的Registry
