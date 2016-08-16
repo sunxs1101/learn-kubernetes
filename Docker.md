@@ -14,7 +14,8 @@ sudo docker run -i -t --name mytest ubuntu:latest /bin/bash
 ### docker镜像关键概念
 ```
 registry:保存docker镜像，分公共和私有两种。默认的registry是Docker hub，Docker hub中有两种类型的仓库：
-用户仓库(user registry)和顶层仓库(top-level repository)。用户仓库的镜像都是由Docker用户创建的，其命名由用户名和仓库名两部分组成，如jamtur01/puppet。与之相对，顶层仓库只包含仓库名部分，如ubuntu仓库。
+用户仓库(user registry)和顶层仓库(top-level repository)。用户仓库的镜像都是由Docker用户创建的，其命名由用户名和仓库名
+两部分组成，如jamtur01/puppet。与之相对，顶层仓库只包含仓库名部分，如ubuntu仓库。
 
 
 repository:具有某个功能的Docker镜像的所有迭代版本构成的镜像库，registry由一系列经过命名的repository组成。
@@ -61,10 +62,38 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web \ nginx -g "daemo
 
 如何搭建私有仓库
 ```
+1. 在localhost搭建私有仓库
 从Docker容器安装一个Registry很简单，
 sudo docker run -p 5000:5000 registry
 将本地镜像打完标签，上传push到新的Registry
 docker push 
+
+2. Running a domain registry
+为了使得registry更广泛可用，Docker利用TLS证书来保证其安全，这在概念上和用SSL配置web服务器类似。
+2.1 get a certificate
+假定你有一个域名myregistrydomain.com，它的DNS记载指向运行registry的主机，首先要从CA获取证书
+
+1) Generate your own certification
+mkdir -p certs && openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt
+2) Be sure to use the name myregistrydomain.com as a CN
+3) Use the result to start your registry with TLS enabled
+4) 令每个docker守护进程信赖证书，执行如下操作
+拷贝domain.crt到/etc/docker/certs.d/myregistrydomain.com:5000/ca.crt
+5) 重启后台进程
+
+TLS使能的情况下，开启registy
+docker run -d -p 5000:5000 --restart=always --name registry \
+  -v `pwd`/certs:/certs \
+  -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/domain.crt \
+  -e REGISTRY_HTTP_TLS_KEY=/certs/domain.key \
+  registry:2
+
+现在可以从其他docker主机上连接你的registry
+docker pull ubuntu
+docker tag ubuntu myregistrydomain.com:5000/ubuntu
+docker push myregistrydomain.com:5000/ubuntu
+docker pull myregistrydomain.com:5000/ubuntu
+
 
 
 ```
