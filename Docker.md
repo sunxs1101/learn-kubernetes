@@ -19,6 +19,45 @@ registry:保存docker镜像，分公共和私有两种。默认的registry是Doc
 repository:具有某个功能的Docker镜像的所有迭代版本构成的镜像库，registry由一系列经过命名的repository组成。
 registry是repository的集合，repository是镜像集合
 ```
+### 基于Dockerfile构建新镜像
+
+```
+sudo docker build -t="jamtur01/static_web:v1" .
+-t选项为新镜像设置仓库和名称，jamtur01为仓库，static_web为镜像名，v1为标签。后面的.告诉Docker到本地目录去找Dockerfile文件。
+也可以制定一个Git仓库的源地址来制定Dockerfile的位置，如下
+sudo docker build -t="jamtur01/static_web:v1" \git@github.com:jamtur01/docker-static_web
+```
+构建上下文
+
+### 从镜像启动容器
+
+```
+sudo docker run -d -p 80 --name static_web jamtur01/static_web \ nginx -g "daemon off;"
+-d:在后台跑
+--name:容器名为static_web
+-p:控制Docker在运行时应该公开哪些网络端口给外部(宿主机)
+
+```
+### Dockerfile指令
+
+ - CMD
+ - ENTRYPOINT
+ - WORKDIR
+ - ENV
+ - USER
+ - VOLUME
+ - ADD
+ - COPY
+ - ONBUILD
+
+## 运行自己的Docker Registry
+
+有时我们希望构建和存储包含不想被公开的信息或数据的镜像，有两个选择
+ - 利用Docker Hub上的私有仓库
+ - 在防火墙后面运行你自己的Registry
+
+
+
 ## kubernetes学习
 
 pod可以想象成一个篮子，而容器则是篮子里的鸡蛋。
