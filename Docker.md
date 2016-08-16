@@ -59,6 +59,9 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web \ nginx -g "daemo
  - 利用Docker Hub上的私有仓库
  - 在防火墙后面运行你自己的Registry
 
+#### Override specific configuration options
+
+通过docker run中-e选项或者在Dockerfile中使用ENV指令来指定配置变量。
 
 
 ## kubernetes学习
