@@ -99,13 +99,45 @@ docker pull myregistrydomain.com:5000/ubuntu
 通过docker run中-e选项或者在Dockerfile中使用ENV指令来指定配置变量。
 
 
-## kubernetes学习
+## kubernetes运行docker registry
 
 pod可以想象成一个篮子，而容器则是篮子里的鸡蛋。
+参考[kubernetes create secret docker-registry](https://github.com/kubernetes/kubernetes.github.io/blob/master/docs/user-guide/kubectl/kubectl_create_secret_docker-registry.md)，为docker-registry创建密钥。
+
+[Private Docker Registry](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/registry)
+k8s提供了一个可选的私有docker registry插件，用于在集群中存放private Docker镜像。
+ - 如何工作
+
+private registry作为Pod在集群中运行，它当前还不支持SSL或其他会导致docker "insecure registry"的认证。为了使用它，我们要在集群中每个节点运行proxy，通过hostPort在节点上开放一个端口，这样就会被Docker认为是安全的，因为它被localhost访问。
+ - 开启
+ - 存储
+
+registry的首要工作是存储数据，存储之前我们要决定把数据存在哪。对于有网路存储的云环境，我们可以使用PersistentVolume抽象，
+```
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: kube-system-kube-registry-pv
+  labels:
+    kubernetes.io/cluster-service: "true"
+spec:
+{% if pillar.get('cluster_registry_disk_type', '') == 'gce' %}
+  capacity:
+    storage: {{ pillar['cluster_registry_disk_size'] }}
+  accessModes:
+    - ReadWriteOnce
+  gcePersistentDisk:
+    pdName: "{{ pillar['cluster_registry_disk_name'] }}"
+    fsType: "ext4"
+{% endif %}
+```
+如果想使用NFS，只需将gcePersistentDisk改成nfs。任何情况下，存储(此例中是GCE)必须单独创建，这不是k8s替你管理的。
+
 
 ## docker部署
 docker的设计理念是希望用户能够保证一个容器只运行一个进程，即只提供一种服务。
 然而，单一容器是无法满足需求的，通常用户需要利用多个容器，分别提供不同的服务，并在不同容器间互连通信，最后形成一个docker集群。
+
 
 docker run命令的--link选项建立容器间的互联关系。
 
