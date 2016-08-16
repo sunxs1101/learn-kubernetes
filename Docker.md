@@ -8,9 +8,7 @@ sudo docker run -i -t --name mytest ubuntu:latest /bin/bash
 --name可以指定docker run命令启动容器的名词，无此选项，Docker将为容器随机分配一个名字
 在镜像名后添加tag来区分同名的镜像，如ubuntu:14.04，默认选取tag为latest的镜像。
 ```
- - docker ps
- - docker commit
- -
+
 ### docker镜像关键概念
 ```
 registry:保存docker镜像，分公共和私有两种。默认的registry是Docker hub，Docker hub中有两种类型的仓库：
