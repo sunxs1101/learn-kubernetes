@@ -93,8 +93,6 @@ docker tag ubuntu myregistrydomain.com:5000/ubuntu
 docker push myregistrydomain.com:5000/ubuntu
 docker pull myregistrydomain.com:5000/ubuntu
 
-
-
 ```
 #### Override specific configuration options
 
