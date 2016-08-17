@@ -60,7 +60,13 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web nginx -g "daemon 
  - 在防火墙后面运行你自己的Registry
 
 如何搭建私有仓库
-https://docs.docker.com/registry/insecure/
+
+https://docs.docker.com/registry/insecure/   推荐用TLS证书来保证registry的安全，但你也可以用self-signed证书，
+甚至在plain http上使用registry。
+
+
+
+
 ```
 1. 在localhost搭建私有仓库
 从Docker容器安装一个Registry很简单，
