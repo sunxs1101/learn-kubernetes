@@ -81,10 +81,14 @@ docker push
 
 1) Generate your own certification
 mkdir -p certs && openssl req -newkey rsa:4096 -nodes -sha256 -keyout certs/domain.key -x509 -days 365 -out certs/domain.crt
+
+sudo -i
+mkdir -p /etc/docker/certs.d/10.10.10.201:5000/ca.crt
+
 2) Be sure to use the name myregistrydomain.com as a CN
 3) Use the result to start your registry with TLS enabled
 4) 令每个docker守护进程信赖证书，执行如下操作
-拷贝domain.crt到/etc/docker/certs.d/myregistrydomain.com:5000/ca.crt
+cp domain.crt /etc/docker/certs.d/10.10.10.201:5000/ca.crt
 5) 重启后台进程
 
 TLS使能的情况下，开启registy
@@ -99,6 +103,16 @@ docker pull ubuntu
 docker tag ubuntu myregistrydomain.com:5000/ubuntu
 docker push myregistrydomain.com:5000/ubuntu
 docker pull myregistrydomain.com:5000/ubuntu
+
+但会出现下面的错误
+crawler@Crawler-01:~/kubectl/certs$ docker push 10.10.10.201:5000/ubuntu
+The push refers to a repository [10.10.10.201:5000/ubuntu]
+Get https://10.10.10.201:5000/v1/_ping: x509: cannot validate certificate for 10.10.10.201 because it doesn't contain any IP SANs
+如何解决：
+
+
+
+
 
 ```
 #### Override specific configuration options
