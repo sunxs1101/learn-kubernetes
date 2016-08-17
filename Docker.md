@@ -64,9 +64,6 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web nginx -g "daemon 
 https://docs.docker.com/registry/insecure/   推荐用TLS证书来保证registry的安全，但你也可以用self-signed证书，
 甚至在plain http上使用registry。
 
-
-
-
 ```
 1. 在localhost搭建私有仓库
 从Docker容器安装一个Registry很简单，
@@ -108,13 +105,12 @@ docker pull myregistrydomain.com:5000/ubuntu
 crawler@Crawler-01:~/kubectl/certs$ docker push 10.10.10.201:5000/ubuntu
 The push refers to a repository [10.10.10.201:5000/ubuntu]
 Get https://10.10.10.201:5000/v1/_ping: x509: cannot validate certificate for 10.10.10.201 because it doesn't contain any IP SANs
-如何解决：
-
-
-
-
+解决办法：在/etc/ssl/openssl.cnf中的v3_ca部分添加subjectAltName = IP:10.10.10.201
 
 ```
+[TLS参考](https://github.com/k8sp/tls)
+
+
 #### Override specific configuration options
 
 通过docker run中-e选项或者在Dockerfile中使用ENV指令来指定配置变量。
