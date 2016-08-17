@@ -31,8 +31,8 @@ sudo docker build -t="jamtur01/static_web:v1" \git@github.com:jamtur01/docker-st
 
 ### 从镜像启动容器
 
-sudo docker run -d -p 80 --name static_web jamtur01/static_web nginx -g "daemon off;"```
-
+sudo docker run -d -p 80 --name static_web jamtur01/static_web nginx -g "daemon off;"
+```
 -d:在后台跑
 --name:容器名为static_web
 -p:通过-p选项映射到特定端口，控制Docker在运行时应该公开哪些网络端口给外部(宿主机)，运行一个容器时，Docker通过两种方法来在宿主机上分配端口。
