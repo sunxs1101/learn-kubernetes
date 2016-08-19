@@ -9,6 +9,11 @@ sudo docker run -i -t --name mytest ubuntu:latest /bin/bash
 在镜像名后添加tag来区分同名的镜像，如ubuntu:14.04，默认选取tag为latest的镜像。
 ```
 
+### docker命令
+```
+docker stop registry && docker rm -v registry
+docker rmi --删除镜像
+```
 ### docker镜像关键概念
 ```
 registry:保存docker镜像，分公共和私有两种。默认的registry是Docker hub，Docker hub中有两种类型的仓库：
