@@ -182,3 +182,13 @@ node $ docker push bootstrapper:5000/hello
 ```
 Trouble shooting
 
+
+## coreos CA
+
+coreos添加CA, https://coreos.com/os/docs/latest/adding-certificate-authorities.html
+
+Use self-signed CA to [encrypt communications with a container registry](https://coreos.com/os/docs/latest/registry-authentication.html) , 
+
+
+
+
