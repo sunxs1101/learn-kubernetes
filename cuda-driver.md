@@ -30,6 +30,20 @@ https://github.com/k8sp/k8s-tensorflow/issues/7
  
  ```
  
+ ## 方法B
+
+https://github.com/k8sp/k8s-tensorflow/tree/master/drivers
+
+
+.build.sh生成libraries,tools,modules。复制这三个文件，Dockerfile创建驱动安装images。
+```
+放在191上/root
+core@00-e0-81-ee-82-c4 / $ sudo ls root/gpu_drivers/
+libraries  load_gpu_driver.sh  mkdevs.sh  modules  tools
+```
+
  
- insmod(install modules) 模块A：向内核加载模块A
- lsmod(list modules)：显示已经载入系统的模块
+ 
+ 
+insmod(install modules) 模块A：向内核加载模块A
+lsmod(list modules)：显示已经载入系统的模块
