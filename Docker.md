@@ -31,8 +31,13 @@ sudo docker build -t="jamtur01/static_web:v1" .
 -t选项为新镜像设置仓库和名称，jamtur01为仓库，static_web为镜像名，v1为标签。后面的.告诉Docker到本地目录去找Dockerfile文件。
 也可以制定一个Git仓库的源地址来制定Dockerfile的位置，如下
 sudo docker build -t="jamtur01/static_web:v1" \git@github.com:jamtur01/docker-static_web
+
+Dockerfile编写
+
+Dockerfile可以使用多个FROM创建多个镜像，但这个Dockerfile创建的镜像只是用最后一个FROM？
+
+
 ```
-构建上下文
 
 ### 从镜像启动容器
 
