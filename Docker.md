@@ -36,6 +36,17 @@ Dockerfile编写
 
 Dockerfile可以使用多个FROM创建多个镜像，但这个Dockerfile创建的镜像只是用最后一个FROM？
 
+Dockerfile指令
+
+ - CMD
+ - ENTRYPOINT
+ - WORKDIR
+ - ENV
+ - USER
+ - VOLUME
+ - ADD
+ - COPY
+ - ONBUILD
 
 ```
 
@@ -50,17 +61,6 @@ sudo docker run -d -p 80 --name static_web jamtur01/static_web nginx -g "daemon 
  - 可以在Docker宿主机中制定一个具体的端口号来映射到容器中的80端口上。
 使用"docker ps "命令查看容器的端口分配情况，"docker port CONTAINERID port"查看端口映射情况。
 ```
-### Dockerfile指令
-
- - CMD
- - ENTRYPOINT
- - WORKDIR
- - ENV
- - USER
- - VOLUME
- - ADD
- - COPY
- - ONBUILD
 
 ## 运行自己的Docker Registry
 
