@@ -38,8 +38,17 @@ The target host requires Python, Docker, and Docker Compose to be installed.
 
 ### k8s安装harbor
 
-参考才云科技的ppt，
+参考才云科技的ppt和https://github.com/vmware/harbor/blob/master/docs/kubernetes_deployment.md#deploying-harbor-on-kubernetes， 链接中有四个yaml文件。
 
+```
+Deploy/kubernetes/mysql-rc.yaml
+Deploy/kubernetes/proxy-rc.yaml
+Deploy/kubernetes/registry-rc.yaml
+Deploy/kubernetes/ui-rc.yaml
+文件说明：
+
+
+```
  - Step 1:容器化配置文件
 ```
 cp /home/core/harbor/harbor/Deploy/kubernetes/dockerfiles/registry-dockerfile /home/core/harbor/harbor/Deploy/Dockerfile
@@ -54,4 +63,6 @@ docker build -t="harbork8s" .
 ./kubernetes/dockerfiles/registry-config.yml
 ```
  - Step 4:
+
+
 
