@@ -40,9 +40,15 @@ The command '/bin/sh -c docker-compose up -d' returned a non-zero code: 1
 
 The target host requires Python, Docker, and Docker Compose to be installed. 
 
-### k8s中运行harbor
+## k8s中运行harbor
 
-参考才云科技的ppt和https://github.com/vmware/harbor/blob/master/docs/kubernetes_deployment.md#deploying-harbor-on-kubernetes，链接中有四个yaml文件。
+参考才云科技的ppt和https://github.com/vmware/harbor/blob/master/docs/kubernetes_deployment.md#deploying-harbor-on-kubernetes ,链接中有四个yaml文件。
+
+### 配置
+registry config文件需要有registry的IP(或DNS名)，但是在service创建之前不知道IP，有很多workarounds来解决这个额外难题：
+
+ - service创建后，使用DNS名，将DNS名与IP关联
+ - service创建后，用service IP重新build registry image，用kubectl rolling-update命令更新到新的image。
 
 ```
 Deploy/kubernetes/mysql-rc.yaml
