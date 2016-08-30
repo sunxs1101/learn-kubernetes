@@ -32,12 +32,10 @@ sudo docker build -t="jamtur01/static_web:v1" .
 也可以制定一个Git仓库的源地址来制定Dockerfile的位置，如下
 sudo docker build -t="jamtur01/static_web:v1" \git@github.com:jamtur01/docker-static_web
 
-Dockerfile编写
-
-Dockerfile可以使用多个FROM创建多个镜像，但这个Dockerfile创建的镜像只是用最后一个FROM？
+docker build -f kubernetes/dockerfiles/proxy-dockerfile -t {your_account}/proxy .
+-f指定dockerfile文件，“.”表示当前位置，dockerfile中的相对路径以.为准
 
 Dockerfile指令
-
  - CMD
  - ENTRYPOINT
  - WORKDIR
@@ -47,6 +45,7 @@ Dockerfile指令
  - ADD
  - COPY
  - ONBUILD
+
 
 ```
 
