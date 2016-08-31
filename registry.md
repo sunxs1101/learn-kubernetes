@@ -1,3 +1,4 @@
+sextant/bsroot/bsroot/gen-ca-and-bootstrapper-certs.bash
 ```
 #!/bin/bash
 
