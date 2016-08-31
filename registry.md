@@ -1,3 +1,4 @@
+```
 #!/bin/bash
 
 # References:
@@ -16,7 +17,7 @@ openssl req -x509 -new -nodes -key ca.key -days 10000 -out ca.crt -subj "/CN=we-
 openssl genrsa -out bootstrapper.key 2048
 openssl req -new -key bootstrapper.key -out bootstrapper.csr -subj "/CN=bootstrapper"
 openssl x509 -req -in bootstrapper.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out bootstrapper.crt -days 365
-
+```
 
 
 # 创建私有domain registry
