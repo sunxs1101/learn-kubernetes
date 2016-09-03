@@ -43,7 +43,7 @@ The target host requires Python, Docker, and Docker Compose to be installed.
 ## k8s中运行harbor
 
 
-### 配置参考才云科技的ppt和https://github.com/vmware/harbor/blob/master/docs/kubernetes_deployment.md#deploying-harbor-on-kubernetes ,链接中有四个yaml文件。
+配置参考才云科技的ppt和https://github.com/vmware/harbor/blob/master/docs/kubernetes_deployment.md#deploying-harbor-on-kubernetes ,链接中有四个yaml文件。
 
 registry config文件需要有registry的IP(或DNS名)，但是在service创建之前不知道IP，有很多workarounds来解决这个额外难题：
 
