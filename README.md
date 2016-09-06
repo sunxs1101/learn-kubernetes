@@ -22,6 +22,19 @@ Kubernetes支持两种对外提供服务的Service的type定义：NodePort和Loa
 
 ### 如何找到DNS server
 
-##命令
+##在k8s中部署Hello World
+
+这个Hello World例子是一个Web留言板应用，基于PHP+Redis的两层分布式架构的Web应用，前端PHP Web网站通过访问后端Redis数据库来完成用户留言的查询和添加等功能。这个例子部署在kubernetes集群中，具有Redis读写分离能力。
+
+为了实现读写分离，在Redis层采用了一个Master和两个Slave的高可用集群模式进行部署。其中Master实例用于前端写操作（添加留言），而两个Slave实例则用于前端读操作（读取留言）。
+
+
+
+
+
+
+
+
+
 
 
